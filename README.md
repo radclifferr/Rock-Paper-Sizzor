@@ -1,0 +1,1 @@
+Creates a rock paper scissors game using javascript run from the console. 
