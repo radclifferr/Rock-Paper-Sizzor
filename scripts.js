@@ -24,7 +24,7 @@ compScore.classList.add("compScores");
 
 //define the winning score div
 const score = document.querySelector(".score");
-const winningScore = document.createElement("h1");
+const winningScore = document.createElement("div");
 winningScore.classList.add("winningScore");
 
 
@@ -49,31 +49,31 @@ function determineWinner (userChoice) {
     c = getComputerChoice();
     if (p === c) {
         roundWinner.textContent = "Tie!"
-        buttons.appendChild(roundWinner)
+        score.appendChild(roundWinner)
         return 0
     }else if (p === "scissors" && c === "paper") {
         roundWinner.textContent = "You win! Scissors beats paper!"
-        buttons.appendChild(roundWinner)
+        score.appendChild(roundWinner)
         return "p"
     }else if (p === "rock" && c === "scissors"){
         roundWinner.textContent = "You win! Rock beats scissors!"
-        buttons.appendChild(roundWinner)
+        score.appendChild(roundWinner)
         return "p"
     }else if (p === "paper" && c === "rock"){
         roundWinner.textContent = "You win! Paper beats rock!"
-        buttons.appendChild(roundWinner)
+        score.appendChild(roundWinner)
         return "p"
     }else if (c === "rock" && p === "scissors"){
         roundWinner.textContent = "Computer wins! Rock beats scissors!"
-        buttons.appendChild(roundWinner)
+        score.appendChild(roundWinner)
         return "c"
     }else if (c === "paper" && p === "rock"){
         roundWinner.textContent = "Computer wins! Paper beats rock!"
-        buttons.appendChild(roundWinner)
+        score.appendChild(roundWinner)
         return "c"
     }else if (c === "scissors" && p === "paper"){
         roundWinner.textContent = "Computer wins! Scissors beats paper!"
-        buttons.appendChild(roundWinner)
+        score.appendChild(roundWinner)
         return "c"
     }
 }
@@ -91,9 +91,9 @@ function game(userChoice) {
             console.log("tie")
         }
         userScore.textContent = `Your score is ${playerScore}`
-        roundWinner.appendChild(userScore)
+        score.appendChild(userScore)
         compScore.textContent = `The computer's score is ${computerScore}`
-        roundWinner.appendChild(compScore)
+        score.appendChild(compScore)
         if (playerScore === 5 || computerScore === 5){
             if (computerScore > playerScore) {
                 winningScore.textContent = `Computer wins with a score of ${computerScore}`
