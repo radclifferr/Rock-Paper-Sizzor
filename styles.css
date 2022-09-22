@@ -1,0 +1,67 @@
+body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    min-height: 100vh;
+    background-color: rgb(22, 22, 22);
+    color: white;
+}
+.headerElements {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 300px;
+    justify-content: center;
+}
+.headerElements h1 {
+    font-size: 52px;
+    text-decoration: underline;
+}
+.playRound {
+    font-size: 34px;
+}
+.chooseWisely {
+    font-size: 28px;
+}
+
+button {
+    padding: 10px;
+    margin: 10px;
+    font-size: 30px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.score{
+    height: 150px;
+    display:flex;
+    flex-direction: column;
+    border: 5px solid white;
+    align-items: center;
+}
+
+
+
+
+.scoreBox {
+    width: 300px;
+}
+
+
+
+.playAgain {
+    border: 2px dashed greenyellow;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+
+.footer {
+    height: 200px;
+    border: 2px solid white;
+    margin-top: auto;
+}
