@@ -23,7 +23,7 @@ const compScore = document.createElement("div");
 compScore.classList.add("compScores");
 
 //define the winning score div
-const body = document.querySelector("body");
+const score = document.querySelector(".score");
 const winningScore = document.createElement("h1");
 winningScore.classList.add("winningScore");
 
@@ -80,31 +80,30 @@ function determineWinner (userChoice) {
 
 let roundCount = 0;
 function game(userChoice) {
-    if (roundCount <= 4) {
+    if (playerScore <= 4 && computerScore <= 4) {
         winner = determineWinner(userChoice);
         roundCount ++
-        console.log(roundCount)
-        if (winner == "p") {
+        if (winner === "p") {
             playerScore ++
-        }else if (winner == "c") {
+        }else if (winner === "c") {
             computerScore ++
+        }else if (winner === 0) {
+            console.log("tie")
         }
         userScore.textContent = `Your score is ${playerScore}`
         roundWinner.appendChild(userScore)
         compScore.textContent = `The computer's score is ${computerScore}`
         roundWinner.appendChild(compScore)
-        if (roundCount === 5){
+        if (playerScore === 5 || computerScore === 5){
             if (computerScore > playerScore) {
                 winningScore.textContent = `Computer wins with a score of ${computerScore}`
-                body.appendChild(winningScore)
+                score.appendChild(winningScore)
                 console.log(`Computer wins with a score of ${computerScore}`)
             }else if (playerScore > computerScore) {
                 winningScore.textContent = `Player wins with a score of ${playerScore}`
-                body.appendChild(winningScore)
+                score.appendChild(winningScore)
                 console.log(`Player wins with a score of ${playerScore}`)
-            }else {
-                console.log("Tie")
+            }
             }
         }
     }
-}
