@@ -1,3 +1,27 @@
+// html manipulation
+// select three buttons
+const rock = document.querySelector('#rock');
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+// add event listeners
+rock.addEventListener('click', () => game("rock"));
+paper.addEventListener("click", () => game("paper"));
+scissors.addEventListener("click", () => game("scissors"));
+
+// define the round winner text div
+const buttons = document.querySelector(".buttons")
+const roundWinner = document.createElement("div");
+roundWinner.classList.add("roundWinner");
+
+//define the user game score div
+const userScore = document.createElement("div");
+userScore.classList.add("userScores");
+
+//define the computer score div
+const compScore = document.createElement("div");
+compScore.classList.add("compScores");
+
+
 //define inital scores
 let computerScore = 0
 let playerScore = 0
@@ -7,49 +31,71 @@ function getComputerChoice() {
     let choices = ["rock", "paper", "scissors"];
     return choices[Math.floor(Math.random() * choices.length)];
 }
-// get the users input with an input function and return it 
-function getUserChoice () {
-    return window.prompt("Enter your choice: ");
-}
+
+
+
+
 // use logic to determine who is the winner in the match
-function determineWinner () {
+function determineWinner (userChoice) {
     // call the choice functions
-    p = getUserChoice().toLowerCase();
+    p = userChoice.toLowerCase();
     c = getComputerChoice();
     if (p === c) {
-        return winStr = ["Tie!", 0]
+        roundWinner.textContent = "Tie!"
+        buttons.appendChild(roundWinner)
+        return 0
     }else if (p === "scissors" && c === "paper") {
-        return ["You win! Scissors beats paper!", "p"]
+        roundWinner.textContent = "You win! Scissors beats paper!"
+        buttons.appendChild(roundWinner)
+        return "p"
     }else if (p === "rock" && c === "scissors"){
-        return ["You win! Rock beats scissors!", "p"]
+        roundWinner.textContent = "You win! Rock beats scissors!"
+        buttons.appendChild(roundWinner)
+        return "p"
     }else if (p === "paper" && c === "rock"){
-        return ["You win! Paper beats rock!", "p"]
+        roundWinner.textContent = "You win! Paper beats rock!"
+        buttons.appendChild(roundWinner)
+        return "p"
     }else if (c === "rock" && p === "scissors"){
-        return ["Computer wins! Rock beats scissors!", "c"]
+        roundWinner.textContent = "Computer wins! Rock beats scissors!"
+        buttons.appendChild(roundWinner)
+        return "c"
     }else if (c === "paper" && p === "rock"){
-        return ["Computer wins! Paper beats rock!", "c"]
+        roundWinner.textContent = "Computer wins! Paper beats rock!"
+        buttons.appendChild(roundWinner)
+        return "c"
     }else if (c === "scissors" && p === "paper"){
-        return ["Computer wins! Scissors beats paper!", "c"]
+        roundWinner.textContent = "Computer wins! Scissors beats paper!"
+        buttons.appendChild(roundWinner)
+        return "c"
     }
 }
-function game() {
-    
-    for (let i = 0; i < 5; i++){
-        winner = determineWinner();
-        console.log (winner[0])
-        if (winner[1] == "p") {
+
+let roundCount = 0;
+function game(userChoice) {
+    if (roundCount <= 4) {
+        winner = determineWinner(userChoice);
+        roundCount ++
+        console.log(roundCount)
+        if (winner == "p") {
             playerScore ++
-        }else if (winner[1] == "c") {
+        }else if (winner == "c") {
             computerScore ++
         }
-    }
-    if (computerScore > playerScore) {
-        console.log(`Computer wins with a score of ${computerScore}`)
-    }else if (playerScore > computerScore) {
-        console.log(`Player wins with a score of ${playerScore}`)
-    }else {
-        console.log("Tie")
+        userScore.textContent = `Your score is ${playerScore}`
+        roundWinner.appendChild(userScore)
+        compScore.textContent = `The computer's score is ${computerScore}`
+        roundWinner.appendChild(compScore)
+        
+
+    }else if (roundCount >= 3) {
+        if (computerScore > playerScore) {
+            console.log(`Computer wins with a score of ${computerScore}`)
+        }else if (playerScore > computerScore) {
+            console.log(`Player wins with a score of ${playerScore}`)
+        }else {
+            console.log("Tie")
+        }
+
     }
 }
-// call determine winner function
-game();
