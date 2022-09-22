@@ -3,6 +3,7 @@
 const rock = document.querySelector('#rock');
 const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
+
 // add event listeners
 rock.addEventListener('click', () => game("rock"));
 paper.addEventListener("click", () => game("paper"));
@@ -20,6 +21,12 @@ userScore.classList.add("userScores");
 //define the computer score div
 const compScore = document.createElement("div");
 compScore.classList.add("compScores");
+
+//define the winning score div
+const body = document.querySelector("body");
+const winningScore = document.createElement("h1");
+winningScore.classList.add("winningScore");
+
 
 
 //define inital scores
@@ -86,16 +93,18 @@ function game(userChoice) {
         roundWinner.appendChild(userScore)
         compScore.textContent = `The computer's score is ${computerScore}`
         roundWinner.appendChild(compScore)
-        
-
-    }else if (roundCount >= 3) {
-        if (computerScore > playerScore) {
-            console.log(`Computer wins with a score of ${computerScore}`)
-        }else if (playerScore > computerScore) {
-            console.log(`Player wins with a score of ${playerScore}`)
-        }else {
-            console.log("Tie")
+        if (roundCount === 5){
+            if (computerScore > playerScore) {
+                winningScore.textContent = `Computer wins with a score of ${computerScore}`
+                body.appendChild(winningScore)
+                console.log(`Computer wins with a score of ${computerScore}`)
+            }else if (playerScore > computerScore) {
+                winningScore.textContent = `Player wins with a score of ${playerScore}`
+                body.appendChild(winningScore)
+                console.log(`Player wins with a score of ${playerScore}`)
+            }else {
+                console.log("Tie")
+            }
         }
-
     }
 }
